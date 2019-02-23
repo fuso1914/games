@@ -1,5 +1,5 @@
 [project]
-title = Mobile game
+title = sword-chang
 version = 1.0
 write_log = 0
 compress_archive = 1
@@ -34,7 +34,7 @@ trigger_overlap_capacity = 16
 
 [bootstrap]
 main_collection = /main/main.collectionc
-render = /builtins/render/default.renderc
+render = /main/fixed_aspect_ratio.renderc
 
 [graphics]
 default_texture_min_filter = linear

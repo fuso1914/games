@@ -1,8 +1,9 @@
 [project]
-title = Mobile game
+title = sword-chang
 
 [bootstrap]
 main_collection = /main/main.collectionc
+render = /main/fixed_aspect_ratio.renderc
 
 [input]
 game_binding = /input/game.input_bindingc
