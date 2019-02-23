@@ -1,0 +1,199 @@
+images {
+  image: "/assets/app_icons/icon_180.png"
+}
+images {
+  image: "/assets/background.png"
+}
+animations {
+  id: "slash1"
+  images {
+    image: "/assets/Sword/swo_f_attack-export1.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export2.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export3.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export4.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export5.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export6.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export7.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export8.png"
+  }
+  playback: PLAYBACK_ONCE_FORWARD
+  fps: 60
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "wait"
+  images {
+    image: "/assets/Sword/swo_f_wait-export1.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_wait-export2.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_wait-export3.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_wait-export4.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_wait-export5.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_wait-export6.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 10
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "slash2"
+  images {
+    image: "/assets/Sword/swo_f_attack-export1.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export2.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export3.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export4.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export5.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export6.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export7.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export8.png"
+  }
+  playback: PLAYBACK_ONCE_FORWARD
+  fps: 120
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "slash0"
+  images {
+    image: "/assets/Sword/swo_f_attack-export1.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export2.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export3.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export4.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export5.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export6.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export7.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export8.png"
+  }
+  playback: PLAYBACK_ONCE_FORWARD
+  fps: 30
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "slash3"
+  images {
+    image: "/assets/Sword/swo_f_attack-export1.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export2.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export3.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export4.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export5.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export6.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export7.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export8.png"
+  }
+  playback: PLAYBACK_ONCE_FORWARD
+  fps: 240
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "slash4"
+  images {
+    image: "/assets/Sword/swo_f_attack-export6.png"
+  }
+  playback: PLAYBACK_ONCE_FORWARD
+  fps: 60
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "slash_first"
+  images {
+    image: "/assets/Sword/swo_f_attack-export1.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export2.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export3.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export4.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export5.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export6.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export7.png"
+  }
+  images {
+    image: "/assets/Sword/swo_f_attack-export8.png"
+  }
+  playback: PLAYBACK_ONCE_FORWARD
+  fps: 16
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+margin: 0
+extrude_borders: 0
+inner_padding: 0

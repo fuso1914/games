@@ -1,0 +1,95 @@
+local anim = hash("wait")
+local aspd = 0.5
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	self.attack = false
+	self.auto = false
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("up_aspd") then
+		if aspd >= 0.01 then
+			aspd = aspd * 0.98 ^ 3
+		end
+		
+	elseif message_id == hash("attack") then
+		self.attack = true
+		
+	elseif message_id == hash("auto_mode") then
+		if self.auto == true then
+			self.auto = false
+		else
+			self.auto = true
+		end
+	end
+	
+
+end
+
+
+local function update_animation(self)
+
+	if self.attack == true then
+		
+		if aspd >= 0.3 then
+			anim = hash("slash_first")
+		elseif aspd < 0.3 and aspd > 0.2 then
+			anim = hash("slash0")	
+		elseif aspd <= 0.2 and aspd >= 0.05 then
+			anim = hash("slash1")
+		elseif aspd < 0.4 and aspd > 0.3 then
+			anim = hash("slash2")
+		elseif aspd <= 0.3 and aspd >= 0.1 then
+			anim = hash("slash3")
+		else
+			anim = hash("slash4")
+		end
+		--print (attack)
+	end
+		
+	if anim ~= self.current_anim then
+		msg.post("#sprite", "play_animation", { id = anim })
+		self.current_anim = anim
+	end
+	
+end
+
+local function cancel_animation(self)
+
+	anim = hash("wait")
+	if anim ~= self.current_anim then
+		msg.post("#sprite", "play_animation", { id = anim })
+		self.current_anim = anim
+	end
+	self.attack = false
+	--print(anim)
+	
+end
+
+function update(self, dt)
+
+	if self.auto == true then
+		msg.post(".", "attack")
+	end
+	
+	--print(attack)
+	--print(self.attack)
+	update_animation(self)
+
+	if self.attack == true then
+		timer.delay(aspd, false, cancel_animation)
+	end
+	self.aspd = math.ceil(9 + (200 * (1 - aspd)))
+	--print (aspd)
+	msg.post("/ui#ui", "update_aspd", { aspd = self.aspd })
+end
+
+
+	
+function on_input(self, action_id, action)
+	--if action_id == hash("touch") and action.pressed then
+		--self.attack = true
+	--end
+	
+end

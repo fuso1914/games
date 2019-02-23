@@ -1,0 +1,38 @@
+
+function init(self) 
+	msg.post(".", "acquire_input_focus") 
+	self.count = 0
+end
+
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("update_aspd") then
+		local text = gui.get_node("text") 
+		gui.set_text(text,  "ASPD: " .. message.aspd) 
+	end
+end
+function update(self, dt)
+
+end
+
+function on_input(self, action_id, action)
+	if action_id == hash("touch") and action.pressed then 
+		local button = gui.get_node("button") 
+		local text = gui.get_node("text") 
+		local box = gui.get_node("box")
+		local auto = gui.get_node("auto")
+		
+		if gui.pick_node(button, action.x, action.y) then 
+			gui.set_text(text, "SPEED UP!") 
+			msg.post("/player#player", "up_aspd")
+			
+		elseif 	gui.pick_node(auto, action.x, action.y) then 
+			msg.post("/player#player", "auto_mode")
+			
+		else gui.pick_node(box, action.x, action.y)
+			msg.post("/player#player", "attack")
+		
+		end
+	
+	end
+end
