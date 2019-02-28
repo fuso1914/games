@@ -194,6 +194,68 @@ animations {
   flip_horizontal: 0
   flip_vertical: 0
 }
+animations {
+  id: "plant_wait"
+  images {
+    image: "/assets/sprites/prant_g/Green_Plant_noBG01.png"
+  }
+  images {
+    image: "/assets/sprites/prant_g/Green_Plant_noBG02.png"
+  }
+  images {
+    image: "/assets/sprites/prant_g/Green_Plant_noBG03.png"
+  }
+  images {
+    image: "/assets/sprites/prant_g/Green_Plant_noBG04.png"
+  }
+  images {
+    image: "/assets/sprites/prant_g/Green_Plant_noBG05.png"
+  }
+  images {
+    image: "/assets/sprites/prant_g/Green_Plant_noBG06.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "plant_dead"
+  images {
+    image: "/assets/sprites/prant_g/Green_Plant_noBG01.png"
+  }
+  images {
+    image: "/assets/sprites/prant_g/Green_Plant_noBG02.png"
+  }
+  images {
+    image: "/assets/sprites/prant_g/Green_Plant_noBG03.png"
+  }
+  images {
+    image: "/assets/sprites/prant_g/Green_Plant_noBG04.png"
+  }
+  images {
+    image: "/assets/sprites/prant_g/Green_Plant_noBG05.png"
+  }
+  images {
+    image: "/assets/sprites/prant_g/Green_Plant_noBG06.png"
+  }
+  images {
+    image: "/assets/sprites/prant_g/Green_Plant_noBG07.png"
+  }
+  images {
+    image: "/assets/sprites/prant_g/Green_Plant_noBG08.png"
+  }
+  images {
+    image: "/assets/sprites/prant_g/Green_Plant_noBG09.png"
+  }
+  images {
+    image: "/assets/sprites/prant_g/Green_Plant_noBG10.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 10
+  flip_horizontal: 0
+  flip_vertical: 0
+}
 margin: 0
 extrude_borders: 0
 inner_padding: 0

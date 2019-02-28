@@ -1,6 +1,6 @@
 components {
   id: "player"
-  component: "/main/player.script"
+  component: "/main/scripts/player.script"
   position {
     x: 0.0
     y: 0.0
@@ -15,7 +15,7 @@ components {
 }
 components {
   id: "sprite"
-  component: "/main/sprite.sprite"
+  component: "/main/sprite/sprite.sprite"
   position {
     x: 0.0
     y: 0.0

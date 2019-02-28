@@ -1,7 +1,8 @@
 
 function init(self) 
 	msg.post(".", "acquire_input_focus") 
-	self.count = 0
+	local damage_text = gui.get_node("damage_text") 
+	local damage_pos = vmath.vector3(200, 600, 0)
 end
 
 
@@ -9,6 +10,11 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash("update_aspd") then
 		local text = gui.get_node("text") 
 		gui.set_text(text,  "ASPD: " .. message.aspd) 
+	end
+
+	if message_id == hash("to_damage") then
+		print (message.damage)
+		--local node = gui.new_text_node(damage_pos, tostring(message.damage))
 	end
 end
 function update(self, dt)
@@ -31,8 +37,9 @@ function on_input(self, action_id, action)
 			
 		else gui.pick_node(box, action.x, action.y)
 			msg.post("/player#player", "attack")
-		
+			--gui.new_text_node(damage_pos, damage_text)
+			print (damage_pos)
+			
 		end
-	
 	end
 end

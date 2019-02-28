@@ -1,0 +1,4 @@
+tile_set: "/main/sprite/main.atlas"
+default_animation: "wait"
+material: "/builtins/materials/sprite.material"
+blend_mode: BLEND_MODE_ALPHA
