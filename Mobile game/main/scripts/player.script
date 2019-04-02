@@ -1,12 +1,12 @@
 local anim = hash("wait")
 local aspd = 0.5
-local damage = 1
 local atk =0
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
 	self.attack = false
 	self.auto = false
+	self.damage = 0
 	
 end
 
@@ -18,7 +18,11 @@ function on_message(self, message_id, message, sender)
 		
 	elseif message_id == hash("attack") then
 		self.attack = true
-		
+		if self.auto == false then 
+		self.damage = self.damage + 1
+		msg.post("/main_damage#damage_factory", "to_damage", { damage = self.damage })
+		print (self.damage)
+		end
 	elseif message_id == hash("auto_mode") then
 		if self.auto == true then
 			self.auto = false
@@ -34,7 +38,8 @@ end
 local function update_animation(self)
 
 	if self.attack == true then
-		
+
+
 		if aspd >= 0.3 then
 			anim = hash("slash_first")
 		elseif aspd < 0.3 and aspd > 0.2 then
@@ -48,12 +53,7 @@ local function update_animation(self)
 		else
 			anim = hash("slash4")
 		end
-
-		
-		self.damage = damage + 1
-		msg.post("/ui#ui", "to_damage", { damage = self.damage })
-		local damage = self.damage
-		print (damage)
+	
 	end
 		
 	if anim ~= self.current_anim then
