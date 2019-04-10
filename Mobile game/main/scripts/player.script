@@ -22,12 +22,12 @@ end
 
 local function damage(self)
 
-	if self.auto == false then 
+	--if self.auto == false then 
 		self.damage = self.damage + 1
 
 		msg.post("/main_damage#damage_factory", "to_damage", { damage = self.damage })
 		--print (self.damage)
-	end
+	--end
 
 end
 
@@ -55,7 +55,7 @@ function on_message(self, message_id, message, sender)
 		self.attack = true
 		msg.post("/ui#ui", "attack", { attack = true })
 
-		--damage(self)
+		damage(self)
 		--timer.delay(aspd, false, damage)
 	
 	elseif message_id == hash("auto_mode") then
@@ -82,6 +82,7 @@ end
 local function update_animation(self)
 
 	if self.attack == true then
+		
 
 
 		if aspd >= 0.3 then
@@ -98,8 +99,8 @@ local function update_animation(self)
 		elseif aspd <= 0.01 then
 			anim = hash("slash4")
 		end
-		print (aspd)
-		print(self.current_anim)
+		--print (aspd)
+		--print(self.current_anim)
 	end
 		
 	if anim ~= self.current_anim then

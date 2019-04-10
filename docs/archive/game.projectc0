@@ -34,7 +34,7 @@ trigger_overlap_capacity = 16
 
 [bootstrap]
 main_collection = /main/main.collectionc
-render = /main/fixed_aspect_ratio.renderc
+render = /GUI/fixed_aspect_ratio.renderc
 
 [graphics]
 default_texture_min_filter = linear
