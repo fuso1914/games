@@ -1,0 +1,12 @@
+images {
+  image: "/PlayerSprites/Sprites/BGFront.png"
+}
+images {
+  image: "/PlayerSprites/Sprites/CloudsFront.png"
+}
+images {
+  image: "/PlayerSprites/Sprites/CloudsBack.png"
+}
+margin: 0
+extrude_borders: 2
+inner_padding: 0

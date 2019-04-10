@@ -1,6 +1,6 @@
 components {
-  id: "player"
-  component: "/main/scripts/player.script"
+  id: "plant"
+  component: "/main/sprite/plant.sprite"
   position {
     x: 0.0
     y: 0.0
@@ -14,8 +14,8 @@ components {
   }
 }
 components {
-  id: "sprite"
-  component: "/main/sprite/sprite.sprite"
+  id: "enemy"
+  component: "/main/scripts/enemy.script"
   position {
     x: 0.0
     y: 0.0
@@ -29,21 +29,21 @@ components {
   }
 }
 embedded_components {
-  id: "player_atatck"
+  id: "enemy_hit"
   type: "collisionobject"
   data: "collision_shape: \"\"\n"
-  "type: COLLISION_OBJECT_TYPE_KINEMATIC\n"
+  "type: COLLISION_OBJECT_TYPE_TRIGGER\n"
   "mass: 0.0\n"
-  "friction: 0.0\n"
-  "restitution: 0.0\n"
-  "group: \"hit\"\n"
-  "mask: \"enemy\"\n"
+  "friction: 0.1\n"
+  "restitution: 0.5\n"
+  "group: \"enemy\"\n"
+  "mask: \"player\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"
   "    position {\n"
-  "      x: -130.0\n"
-  "      y: -73.0\n"
+  "      x: -2.0\n"
+  "      y: 11.0\n"
   "      z: 0.0\n"
   "    }\n"
   "    rotation {\n"
@@ -55,13 +55,13 @@ embedded_components {
   "    index: 0\n"
   "    count: 3\n"
   "  }\n"
-  "  data: 10.0\n"
-  "  data: 10.0\n"
+  "  data: 30.62\n"
+  "  data: 29.985\n"
   "  data: 10.0\n"
   "}\n"
   "linear_damping: 0.0\n"
   "angular_damping: 0.0\n"
-  "locked_rotation: true\n"
+  "locked_rotation: false\n"
   ""
   position {
     x: 0.0

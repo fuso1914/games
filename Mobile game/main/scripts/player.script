@@ -1,13 +1,47 @@
 local anim = hash("wait")
 local aspd = 0.5
 local atk =0
+local player_atatck = hash("player_atatck")
+local attack_msg =  hash("attack")
+
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
 	self.attack = false
+	msg.post("/ui#ui", "attack", { attack = false })
 	self.auto = false
 	self.damage = 0
 	
+	self.p = go.get_position()
+	self.e = vmath.vector3(220, 490, 0)
+	--print (self.p)
+	self.my_groups = {hash("enemy"),hash("player")}
+
+	
+end
+
+local function damage(self)
+
+	if self.auto == false then 
+		self.damage = self.damage + 1
+
+		msg.post("/main_damage#damage_factory", "to_damage", { damage = self.damage })
+		--print (self.damage)
+	end
+
+end
+
+local function cancel_animation(self)
+	--msg.post("/ui#ui", "attack", { attack = true })
+	anim = hash("wait")
+	if anim ~= self.current_anim then
+		msg.post("#sprite", "play_animation", { id = anim })
+		self.current_anim = anim
+		msg.post("/ui#ui", "attack", { attack = false })
+	end
+	self.attack = false
+	--print(anim)
+
 end
 
 function on_message(self, message_id, message, sender)
@@ -17,18 +51,28 @@ function on_message(self, message_id, message, sender)
 		end
 		
 	elseif message_id == hash("attack") then
+		--print(attack_msg)
 		self.attack = true
-		if self.auto == false then 
-		self.damage = self.damage + 1
-		msg.post("/main_damage#damage_factory", "to_damage", { damage = self.damage })
-		print (self.damage)
-		end
+		msg.post("/ui#ui", "attack", { attack = true })
+
+		--damage(self)
+		--timer.delay(aspd, false, damage)
+	
 	elseif message_id == hash("auto_mode") then
 		if self.auto == true then
 			self.auto = false
 		else
 			self.auto = true
 		end
+	end
+	if message_id == hash("play_animation") then
+			
+			--print("wait")
+	end
+	if message_id == hash("animation_done") then
+		msg.post("/ui#ui", "attack", { attack = false })
+		cancel_animation(self)
+		--print("ok")
 	end
 	
 
@@ -42,18 +86,20 @@ local function update_animation(self)
 
 		if aspd >= 0.3 then
 			anim = hash("slash_first")
+			--msg.post("/ui#ui", "attack", { attack = true })
 		elseif aspd < 0.3 and aspd > 0.2 then
 			anim = hash("slash0")	
-		elseif aspd <= 0.2 and aspd >= 0.05 then
+		elseif aspd <= 0.2 and aspd > 0.05 then
 			anim = hash("slash1")
-		elseif aspd < 0.4 and aspd > 0.3 then
+		elseif aspd <= 0.05 and aspd > 0.03 then
 			anim = hash("slash2")
-		elseif aspd <= 0.3 and aspd >= 0.1 then
+		elseif aspd <= 0.03 and aspd > 0.01 then
 			anim = hash("slash3")
-		else
+		elseif aspd <= 0.01 then
 			anim = hash("slash4")
 		end
-	
+		print (aspd)
+		print(self.current_anim)
 	end
 		
 	if anim ~= self.current_anim then
@@ -63,17 +109,6 @@ local function update_animation(self)
 	
 end
 
-local function cancel_animation(self)
-
-	anim = hash("wait")
-	if anim ~= self.current_anim then
-		msg.post("#sprite", "play_animation", { id = anim })
-		self.current_anim = anim
-	end
-	self.attack = false
-	--print(anim)
-	
-end
 
 function update(self, dt)
 
@@ -85,12 +120,22 @@ function update(self, dt)
 	--print(self.attack)
 	update_animation(self)
 
-	if self.attack == true then
-		timer.delay(aspd, false, cancel_animation)
-	end
+	--if self.attack == true then
+	--	timer.delay(aspd, false, cancel_animation)
+	--	end
 	self.aspd = math.ceil(9 + (200 * (1 - aspd)))
 	--print (aspd)
 	msg.post("/ui#ui", "update_aspd", { aspd = self.aspd })
+
+	--if anim ~= hash("wait") then
+		--msg.post("/ui#ui", "attack", { attack = true })
+	--end
+
+
+	--msg.post("/enemy#enemy", "attack_e",{ } )
+
+	--print(self.current_anim)
+	
 end
 
 

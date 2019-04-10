@@ -1,7 +1,7 @@
-
+local gravity = -20
 function init(self)
-	self.pos = go.get_position()
-
+	-- Add initialization code here
+	-- Remove this function if not needed
 end
 
 function final(self)
@@ -9,14 +9,9 @@ function final(self)
 	-- Remove this function if not needed
 end
 
-local function delete(self)
-	go.delete()
-end
-
 function update(self, dt)
-	self.pos = self.pos + vmath.vector3(0, 5, 0)
-	go.set_position(self.pos)
-	timer.delay(0.5, false, delete)
+	-- Add update code here
+	-- Remove this function if not needed
 end
 
 function on_message(self, message_id, message, sender)
