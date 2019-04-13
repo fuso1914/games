@@ -1,4 +1,4 @@
-local gravity = -10
+local gravity = -100
 local jump_takeoff_speed = 900
 local input_left = hash("left")
 local input_right = hash("right")
@@ -6,6 +6,8 @@ local gravity = -1000
 local max_speed = 450
 local move_acceleration = 3500
 local air_acceleration_factor = 0.8
+local jump_takeoff_speed = 550
+
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
@@ -14,12 +16,15 @@ function init(self)
 	self.velocity = vmath.vector3(0, 0, 0)
 	self.ground_contact = false
 	self.move_input = 0
+	self.touch_jump_timer = 0
 	
 	self.moving = false  
 	self.input = vmath.vector3()
 	self.dir = vmath.vector3(0, 1, 0) 
 	self.speed = 50   
 
+		
+	
 end
 
 function final(self)
@@ -30,6 +35,8 @@ function update(self, dt)
 	local target_speed = self.move_input * max_speed
 	local speed_diff = target_speed - self.velocity.x
 	local acceleration = vmath.vector3(0, gravity, 0)
+
+	
 
 	if speed_diff ~= 0 then
 		if speed_diff < 0 then
@@ -42,6 +49,8 @@ function update(self, dt)
 			acceleration.x = air_acceleration_factor * acceleration.x
 		end
 	end
+
+	local dv = acceleration * dt
 	
 	--go.set_position(go.get_position() + self.velocity * dt)
 
@@ -85,15 +94,16 @@ function on_message(self, message_id, message, sender)
 end
 
 function on_input(self, action_id, action)
-	if action_id == input_left and action.pressed then
+	if action_id == input_left  then
 		self.move_input = -action.value
-	elseif action_id == input_right and action.pressed then
+	elseif action_id == input_right then
 		self.move_input = action.value
 	elseif action_id == input_jump then
 		if action.pressed then
 			jump(self)
 		elseif action.released then
 			abort_jump(self)
+			
 		end
 	--else self.move_input = 0
 	end

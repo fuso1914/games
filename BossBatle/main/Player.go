@@ -15,7 +15,7 @@ components {
 }
 components {
   id: "PlayerContoeller"
-  component: "/main/Scripts/PlayerContorller.script"
+  component: "/main/Scripts/PlayerContorllerBasic.script"
   position {
     x: 0.0
     y: 0.0
@@ -38,6 +38,7 @@ embedded_components {
   "restitution: 0.0\n"
   "group: \"player\"\n"
   "mask: \"ground\"\n"
+  "mask: \"go\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"

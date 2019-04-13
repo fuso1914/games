@@ -8,7 +8,11 @@ key_trigger {
 }
 key_trigger {
   input: KEY_SPACE
-  action: "input_jump"
+  action: "trigger"
+}
+key_trigger {
+  input: KEY_LSHIFT
+  action: "dush"
 }
 mouse_trigger {
   input: MOUSE_BUTTON_LEFT
