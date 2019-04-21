@@ -1,4 +1,8 @@
 local gravity = -20
+local jump = hash("Jump")
+local walk = hash("Walk")
+local idle = hash("idle")
+
 
 function init(self)
 	-- Add initialization code here
@@ -10,8 +14,15 @@ function init(self)
 	self.climbing = false
 	self.actions = {}
 	self.jumpcount = 0
+	self.idle_anim = false
+	self.on_ground = false
+	local url = msg.url("#sprite")
+	sprite.play_flipbook(url, idle, anim_done)
 end
 
+--local function anim_done(self, message_id, message, sender)
+			--spine.play_anim(url, "idle", go.PLAYBACK_LOOP_FORWARD, properties, anim_done)
+--end
 function final(self)
 	-- Add finalization code here
 	-- Remove this function if not needed
@@ -22,23 +33,51 @@ local function move (self , dash)
 
 	self.dush = dush
 end
+
+local function anime (self)
+	if self.idle_anim == true then
+		--msg.post("#sprite", "play_animation", {id = hash("idle")})
+	end
+end 
+
 function update(self, dt)
 	-- Add update code here
 	-- Remove this function if not needed
 	local gravity = vmath.vector3(0, gravity, 0)
+	
+	anime(self)
 
 	if self.actions[hash("left")] then
+		
 		self.velocity.x = -200 - self.dush
-		--script.set_hflip("#sprite", false)
+		if self.on_ground == true then
+			sprite.play_flipbook("#sprite", walk, anim_done)
+		--msg.post("#sprite", "play_animation", {id = hash("Walk")})
+			sprite.set_hflip("#sprite", true)
+		end
+		
 	elseif self.actions[hash("right")] then
+		--msg.post("#sprite", "play_animation", {id = hash("Walk")})
 		self.velocity.x = 200 + self.dush
+		if self.on_ground == true then
+			sprite.play_flipbook("#sprite", walk, anim_done)
+			--msg.post("#sprite", "play_animation", {id = hash("Walk")})
+			sprite.set_hflip("#sprite", false)
+		end
 	else
 		self.velocity.x = 0
+		--if self.on_ground == true then
+			--sprite.play_flipbook("#sprite", idle, anim_done)
+		--end
+		
+		--self.idle_anim = false
 		
 	end
 
 	if not self.ground_contact and not self.climbing then
 		self.velocity = self.velocity + gravity
+		self.idle_anim = false
+		
 		
 	end
 	go.set_position(go.get_position() + self.velocity * dt) --つかえる表現
@@ -47,6 +86,18 @@ function update(self, dt)
 	self.correction = vmath.vector3()
 	self.ground_contact = false
 	self.dush = 0
+	print(self.on_ground)
+
+end
+
+local function sidewall_contact(self, normal, distance)
+	local proj = vmath.dot(self.correction, normal)
+	local comp = (distance - proj) * normal
+	self.correction = self.correction + comp
+	go.set_position(go.get_position() + comp)
+	self.velocity.y = self.velocity.y /1.5
+	self.jumpcount  = 0
+	msg.post("#sprite", "play_animation", {id = hash("Wall")})
 
 end
 
@@ -57,27 +108,42 @@ local function handle_geometry_contact(self, normal, distance)
 	go.set_position(go.get_position() + comp)
 	if normal.y > 0.7 then
 		self.ground_contact = true
+		self.idle_anim = false
+		
 	end
 	proj = vmath.dot(self.velocity , normal)
 	if proj < 0 then
 		self.velocity = self.velocity - proj * normal
 		self.velocity.x = 0
 		self.jumpcount  = 0
+		self.idle_anim = true
+		
 	end
 end
+
 
 local function hoge (self)
 	self.velocity.y = 500
 	go.set_position(go.get_position() + self.velocity * dt)
-	
+	--msg.post("#sprite", "play_animation", {id = hash("idle")})
 end
 
 function on_message(self, message_id, message, sender)
 	-- Add message-handling code here
 	-- Remove this function if not needed
 	if message_id == hash("contact_point_response") then
+		self.on_ground = true
+		
 		if message.group == hash("ground") then
+	
 			handle_geometry_contact(self, message.normal, message.distance)
+			
+			if message_id == hash("spine_animation_done") then
+				-- start the walk animation
+				msg.post("#sprite", "play_animation", {id = hash("idle")})
+				print("1")
+			end
+
 			
 		end
 		if message.group == hash("go") then
@@ -85,15 +151,20 @@ function on_message(self, message_id, message, sender)
 			self.ni = vmath.vector3(10, 10, 0)
 			
 			self.hit = vmath.dot(self.ichi, self.ni)
-			self.velocity.y = 500
-			
-			
+			self.velocity.y = 500						
 		end
+		if message.group == hash("sidewall") then
+			sidewall_contact(self, message.normal, message.distance)
+
+		end
+		if message_id == hash("boost") then
+			self.dush = message.dush
+		end
+
 		if message_id == hash("boost") then
 			self.dush = message.dush
 			print(message.dush)
 		end
-			 
 		
 	end	
 end
@@ -116,6 +187,10 @@ function on_input(self, action_id, action)
 		if action_id == hash("trigger") and action.pressed and self.jumpcount <  2 then
 			self.velocity.y = 500
 			self.jumpcount  = self.jumpcount  + 1
+			--msg.post("#sprite", "play_animation", {id = hash("Jump")})
+			--self.idle_anim = false
+			self.on_ground = false
+			sprite.play_flipbook("#sprite", "Jump", anim_done)
 		end
 	end
 end

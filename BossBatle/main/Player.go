@@ -1,5 +1,5 @@
 components {
-  id: "Player"
+  id: "sprite"
   component: "/main/Player.sprite"
   position {
     x: 0.0
@@ -39,6 +39,7 @@ embedded_components {
   "group: \"player\"\n"
   "mask: \"ground\"\n"
   "mask: \"go\"\n"
+  "mask: \"sidewall\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"

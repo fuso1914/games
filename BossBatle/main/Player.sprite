@@ -1,4 +1,4 @@
 tile_set: "/main/Player.atlas"
-default_animation: "idle"
+default_animation: "Attack"
 material: "/builtins/materials/sprite.material"
 blend_mode: BLEND_MODE_ALPHA
