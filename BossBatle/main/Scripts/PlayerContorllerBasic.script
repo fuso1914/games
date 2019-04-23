@@ -41,8 +41,6 @@ local function anime (self)
 end 
 
 function update(self, dt)
-	-- Add update code here
-	-- Remove this function if not needed
 	local gravity = vmath.vector3(0, gravity, 0)
 	
 	anime(self)
