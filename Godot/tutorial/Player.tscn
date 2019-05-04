@@ -24,7 +24,11 @@ radius = 25.6213
 height = 14.6525
 
 [node name="Player" type="Area2D"]
+editor/display_folded = true
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
