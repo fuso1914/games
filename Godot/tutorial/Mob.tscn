@@ -27,13 +27,15 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 37.4001
+radius = 15.9036
 height = 8.29987
 
 [node name="Mob" type="RigidBody2D"]
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource( 1 )
+min_speed = 150
+max_speed = 250
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.75, 0.75 )
@@ -46,3 +48,4 @@ shape = SubResource( 2 )
 
 [node name="Visibility" type="VisibilityNotifier2D" parent="."]
 
+[connection signal="screen_exited" from="Visibility" to="." method="_on_Visibility_screen_exited"]

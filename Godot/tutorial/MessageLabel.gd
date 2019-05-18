@@ -1,4 +1,4 @@
-extends Node
+extends Label
 
 # Declare member variables here. Examples:
 # var a = 2
