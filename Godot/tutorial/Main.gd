@@ -12,11 +12,14 @@ func new_game():
 	$StartTimer.start()
 	$HUD.show_message("Get Ready")
 	$HUD.update_score(score)
+	$Music.play()
 
 func game_over(): #PlyarノードのHitにConnectしている
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	$HUD.game_over()
+	$Music.stop()
+	$DeathSound.play()
 
 func _on_StartTimer_timeout():
 	$MobTimer.start()

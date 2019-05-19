@@ -10,9 +10,11 @@ func show_message(text):
 func game_over():
 	show_message("Game Over")
 	yield($MessageTimer, "timeout") #２秒間表示する
-	$StartButton.show()
 	$MessageLabel.text = "Dodge the\nCreeps!" #/nは改行
-	$MessageLable.show()
+	$MessageLabel.show()
+	yield(get_tree().create_timer(1), "timeout")
+	$StartButton.show()
+	
 	
 func update_score(score):
 	$ScoreLabel.text = str(score) #ScoreLableのtextを文字列のスコアに変える
