@@ -1,0 +1,91 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-idle-2-01.png" type="Texture" id=2]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-idle-2-02.png" type="Texture" id=3]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-idle-2-03.png" type="Texture" id=4]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-run-00.png" type="Texture" id=5]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-run-01.png" type="Texture" id=6]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-run-02.png" type="Texture" id=7]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-run-03.png" type="Texture" id=8]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-run-04.png" type="Texture" id=9]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-run-05.png" type="Texture" id=10]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-jump-00.png" type="Texture" id=11]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-jump-01.png" type="Texture" id=12]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-jump-02.png" type="Texture" id=13]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-jump-03.png" type="Texture" id=14]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 14 ), ExtResource( 13 ) ],
+"loop": false,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "ladder",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 29.3316 )
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 604.19, 258.38 )
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 1 )
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Body"]
+position = Vector2( -1.39673, 0 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 1 )
+animation = "idle"
+frame = 1
+speed_scale = 2.0
+
+[node name="PhysisShape" type="CollisionShape2D" parent="."]
+light_mask = 0
+position = Vector2( -4.75653, 0.475647 )
+shape = SubResource( 2 )
+
+[node name="RayCasts" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="RayCast2D" type="RayCast2D" parent="RayCasts"]
+position = Vector2( 3.8, 29 )
+cast_to = Vector2( 0, 16 )
+
+[node name="RayCast2D2" type="RayCast2D" parent="RayCasts"]
+position = Vector2( -4, 29 )
+cast_to = Vector2( 0, 16 )
+
+[node name="RayCast2D3" type="RayCast2D" parent="RayCasts"]
+position = Vector2( -12.79, 29 )
+cast_to = Vector2( 0, 16 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2( -155.19, 30.62 )
+emitting = false
+amount = 30
+lifetime = 4.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector2( 0, -98.8 )
+initial_velocity = 5.0
+initial_velocity_random = 1.0
+scale_amount = 2.0
+
