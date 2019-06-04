@@ -4,16 +4,16 @@
 [ext_resource path="res://sozai/Individual Sprites/adventurer-idle-2-01.png" type="Texture" id=2]
 [ext_resource path="res://sozai/Individual Sprites/adventurer-idle-2-02.png" type="Texture" id=3]
 [ext_resource path="res://sozai/Individual Sprites/adventurer-idle-2-03.png" type="Texture" id=4]
-[ext_resource path="res://sozai/Individual Sprites/adventurer-run-00.png" type="Texture" id=5]
-[ext_resource path="res://sozai/Individual Sprites/adventurer-run-01.png" type="Texture" id=6]
-[ext_resource path="res://sozai/Individual Sprites/adventurer-run-02.png" type="Texture" id=7]
-[ext_resource path="res://sozai/Individual Sprites/adventurer-run-03.png" type="Texture" id=8]
-[ext_resource path="res://sozai/Individual Sprites/adventurer-run-04.png" type="Texture" id=9]
-[ext_resource path="res://sozai/Individual Sprites/adventurer-run-05.png" type="Texture" id=10]
-[ext_resource path="res://sozai/Individual Sprites/adventurer-jump-00.png" type="Texture" id=11]
-[ext_resource path="res://sozai/Individual Sprites/adventurer-jump-01.png" type="Texture" id=12]
-[ext_resource path="res://sozai/Individual Sprites/adventurer-jump-02.png" type="Texture" id=13]
-[ext_resource path="res://sozai/Individual Sprites/adventurer-jump-03.png" type="Texture" id=14]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-jump-00.png" type="Texture" id=5]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-jump-01.png" type="Texture" id=6]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-jump-02.png" type="Texture" id=7]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-jump-03.png" type="Texture" id=8]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-run-00.png" type="Texture" id=9]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-run-01.png" type="Texture" id=10]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-run-02.png" type="Texture" id=11]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-run-03.png" type="Texture" id=12]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-run-04.png" type="Texture" id=13]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-run-05.png" type="Texture" id=14]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -22,12 +22,7 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "run",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 14 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 8 ), ExtResource( 7 ) ],
 "loop": false,
 "name": "jump",
 "speed": 5.0
@@ -36,6 +31,11 @@ animations = [ {
 "loop": true,
 "name": "ladder",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -43,7 +43,7 @@ extents = Vector2( 10, 29.3316 )
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 604.19, 258.38 )
-collision_layer = 0
+collision_layer = 2
 collision_mask = 0
 script = ExtResource( 1 )
 
@@ -58,23 +58,25 @@ frame = 1
 speed_scale = 2.0
 
 [node name="PhysisShape" type="CollisionShape2D" parent="."]
-light_mask = 0
-position = Vector2( -4.75653, 0.475647 )
+position = Vector2( -2.94904, 7.47968 )
 shape = SubResource( 2 )
 
 [node name="RayCasts" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="RayCast2D" type="RayCast2D" parent="RayCasts"]
-position = Vector2( 3.8, 29 )
+position = Vector2( 5.14, 36 )
+enabled = true
 cast_to = Vector2( 0, 16 )
+collide_with_areas = true
 
 [node name="RayCast2D2" type="RayCast2D" parent="RayCasts"]
-position = Vector2( -4, 29 )
+position = Vector2( -2.4, 36 )
+enabled = true
 cast_to = Vector2( 0, 16 )
 
 [node name="RayCast2D3" type="RayCast2D" parent="RayCasts"]
-position = Vector2( -12.79, 29 )
+position = Vector2( -10.51, 36 )
+enabled = true
 cast_to = Vector2( 0, 16 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]

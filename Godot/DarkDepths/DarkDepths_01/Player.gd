@@ -3,18 +3,21 @@ extends KinematicBody2D
 const UP = Vector2(0, -1)
 const SLOPE_STOP = 64
 
-
 var velocity = Vector2()
 var move_speed = 5 * 96
-var gravity = 10000
-var jump_velocity = -720
+var gravity = 1200
+var jump_velocity = -600
 var is_grounded
+var is_jumping = false
 
 onready var raycasts = $RayCasts
 
 func _physics_process(delta):
 	_get_input()
-	velocity.y = gravity * delta
+	
+	if is_jumping && velocity.y >= 0:
+		is_jumping = false
+	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, UP, SLOPE_STOP) #kinematic動かすのになんかこれ必要
 	
 	is_grounded = _check_is_grounded()
@@ -24,6 +27,7 @@ func _physics_process(delta):
 func _input(event):
 	if event.is_action_pressed("jump") && is_grounded:
 		velocity.y = jump_velocity
+		print(event.as_text())
 	
 func _get_input():
 	var move_direction = -int(Input.is_action_pressed("move_left")) + int(Input.is_action_pressed("move_right"))
@@ -32,7 +36,7 @@ func _get_input():
 		$Body.scale.x = move_direction
 		
 func _get_h_weight():
-	return 0.05 if is_grounded else 0.1
+	return 0.2 if is_grounded else 0.1
 	
 func _check_is_grounded():
 	for raycast in raycasts.get_children():
