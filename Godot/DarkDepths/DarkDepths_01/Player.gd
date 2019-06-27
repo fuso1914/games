@@ -36,7 +36,7 @@ func _get_input():
 		$Body.scale.x = move_direction
 		
 func _get_h_weight():
-	return 0.2 if is_grounded else 0.1
+	return 0.5 if is_grounded else 0.1
 	
 func _check_is_grounded():
 	for raycast in raycasts.get_children():

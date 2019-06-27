@@ -4,16 +4,16 @@
 [ext_resource path="res://sozai/Individual Sprites/adventurer-idle-2-01.png" type="Texture" id=2]
 [ext_resource path="res://sozai/Individual Sprites/adventurer-idle-2-02.png" type="Texture" id=3]
 [ext_resource path="res://sozai/Individual Sprites/adventurer-idle-2-03.png" type="Texture" id=4]
-[ext_resource path="res://sozai/Individual Sprites/adventurer-jump-00.png" type="Texture" id=5]
-[ext_resource path="res://sozai/Individual Sprites/adventurer-jump-01.png" type="Texture" id=6]
-[ext_resource path="res://sozai/Individual Sprites/adventurer-jump-02.png" type="Texture" id=7]
-[ext_resource path="res://sozai/Individual Sprites/adventurer-jump-03.png" type="Texture" id=8]
-[ext_resource path="res://sozai/Individual Sprites/adventurer-run-00.png" type="Texture" id=9]
-[ext_resource path="res://sozai/Individual Sprites/adventurer-run-01.png" type="Texture" id=10]
-[ext_resource path="res://sozai/Individual Sprites/adventurer-run-02.png" type="Texture" id=11]
-[ext_resource path="res://sozai/Individual Sprites/adventurer-run-03.png" type="Texture" id=12]
-[ext_resource path="res://sozai/Individual Sprites/adventurer-run-04.png" type="Texture" id=13]
-[ext_resource path="res://sozai/Individual Sprites/adventurer-run-05.png" type="Texture" id=14]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-run-00.png" type="Texture" id=5]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-run-01.png" type="Texture" id=6]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-run-02.png" type="Texture" id=7]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-run-03.png" type="Texture" id=8]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-run-04.png" type="Texture" id=9]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-run-05.png" type="Texture" id=10]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-jump-00.png" type="Texture" id=11]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-jump-01.png" type="Texture" id=12]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-jump-02.png" type="Texture" id=13]
+[ext_resource path="res://sozai/Individual Sprites/adventurer-jump-03.png" type="Texture" id=14]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -22,19 +22,19 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 8 ), ExtResource( 7 ) ],
-"loop": false,
-"name": "jump",
-"speed": 5.0
-}, {
 "frames": [  ],
 "loop": true,
 "name": "ladder",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 14 ), ExtResource( 13 ) ],
+"loop": false,
+"name": "jump",
 "speed": 5.0
 } ]
 
